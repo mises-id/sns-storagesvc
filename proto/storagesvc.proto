@@ -1,0 +1,114 @@
+// In general, while you can use proto2 (the current default protocol buffers
+// version), we recommend that you use proto3 with gRPC as it lets you use the
+// full range of gRPC-supported languages, as well as avoiding compatibility
+// issues with proto2 clients talking to proto3 servers and vice versa.
+syntax = "proto3";
+
+// The package name determines the name of the directories that truss creates
+// for `package echo;` truss will create the directory "echo-service".
+package storagesvc;
+
+import "github.com/metaverse/truss/deftree/googlethirdparty/annotations.proto";
+
+service Storagesvc {
+
+    rpc ImageUrl (ImageUrlRequest) returns (ImageUrlResponse) {
+        //
+        option (google.api.http) = {
+          // 
+          get: "/image/url"
+    
+          additional_bindings {
+            // 
+            get: "/image/url/"
+          }
+        };
+
+}
+    rpc FUpload (FUploadRequest) returns (FUploadResponse) {
+        //
+        option (google.api.http) = {
+          // 
+          get: "/fupload"
+    
+          additional_bindings {
+            // 
+            get: "/fupload/"
+          }
+        };
+
+}
+    rpc Upload (UploadRequest) returns (UploadResponse) {
+        //
+        option (google.api.http) = {
+          // 
+          post: "/upload"
+    
+          additional_bindings {
+            // 
+            post: "/upload/"
+            body:"*"
+          }
+        };
+
+}
+
+}
+
+message ImageUrlRequest {
+   string img = 1;
+   ImageOptions options = 2;
+   string str = 3;
+}
+
+message ImageUrlResponse {
+  string path = 1;
+  string url = 2;
+}
+
+message ResizeOptions {
+  uint64 width = 1;
+  uint64 height = 2;
+  bool resize = 3;
+  string resize_type = 4; // fit fill
+}
+
+message CropOptions {
+  uint64 width = 1;
+  uint64 height = 2;
+  bool crop = 3;
+}
+message ImageOptions {
+  ResizeOptions resize_options =1;
+  CropOptions crop_options = 2;
+}
+
+message ImageThumbnail {
+  
+  uint64 width = 1;
+  uint64 height = 2;
+  uint64 gravity = 3;
+}
+
+
+
+message FUploadRequest {
+    string file = 1; //local file
+    string bucket = 2;
+    string key = 3;
+ }
+
+ message FUploadResponse {
+     string path = 1;
+     string url = 2;
+     string size = 3;
+ }
+message UploadRequest {
+    string file_type = 1; 
+ }
+
+ message UploadResponse {
+     string path = 1;
+     string url = 2;
+     string size = 3;
+ }
