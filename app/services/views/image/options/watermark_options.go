@@ -1,6 +1,9 @@
 package options
 
-import "encoding/base64"
+import (
+	"encoding/base64"
+	"fmt"
+)
 
 type (
 	Color struct {
@@ -21,9 +24,15 @@ func paserWatermarkTextStrToOptions(op *ImageOptions, arr []string) {
 	if len < 2 || arr[1] == "" {
 		return
 	}
+
+	text, err := base64.RawURLEncoding.DecodeString(arr[1])
+	if err != nil {
+		fmt.Println("watermark text decode error ", err.Error())
+		return
+	}
 	wop := &WatermarkTextOptions{
 		Watermark: true,
-		Text:      base64.RawURLEncoding.EncodeToString([]byte(arr[1])),
+		Text:      string(text[:]),
 	}
 	op.WatermarkTextOptions = wop
 }

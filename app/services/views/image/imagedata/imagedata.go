@@ -3,8 +3,8 @@ package imagedata
 import (
 	"context"
 
-	"github.com/mises-id/storagesvc/app/services/download"
-	"github.com/mises-id/storagesvc/app/services/views/image/imagetype"
+	"github.com/mises-id/sns-storagesvc/app/services/download"
+	"github.com/mises-id/sns-storagesvc/app/services/views/image/imagetype"
 )
 
 type (

@@ -5,7 +5,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/mises-id/storagesvc/app/services/views/image/imagetype"
+	"github.com/mises-id/sns-storagesvc/app/services/views/image/imagetype"
 )
 
 var (

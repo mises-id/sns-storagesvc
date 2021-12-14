@@ -1,4 +1,4 @@
-module github.com/mises-id/storagesvc
+module github.com/mises-id/sns-storagesvc
 
 go 1.16
 
@@ -19,6 +19,7 @@ require (
 	github.com/metaverse/truss v0.3.1
 	github.com/pkg/errors v0.9.1
 	github.com/sirupsen/logrus v1.8.1
+	github.com/stretchr/testify v1.7.0 // indirect
 	github.com/urfave/cli v1.22.5
 	golang.org/x/crypto v0.0.0-20211202192323-5770296d904e // indirect
 	golang.org/x/net v0.0.0-20211208012354-db4efeb81f4b // indirect
@@ -27,4 +28,4 @@ require (
 	google.golang.org/grpc v1.42.0
 )
 
-replace github.com/metaverse/truss => ../truss
+//replace github.com/metaverse/truss => ../truss

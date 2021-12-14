@@ -3,8 +3,8 @@ package processing
 import (
 	"context"
 
-	"github.com/mises-id/storagesvc/app/services/views/image/imagedata"
-	"github.com/mises-id/storagesvc/app/services/views/image/options"
+	"github.com/mises-id/sns-storagesvc/app/services/views/image/imagedata"
+	"github.com/mises-id/sns-storagesvc/app/services/views/image/options"
 )
 
 type (

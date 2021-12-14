@@ -4,11 +4,11 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/mises-id/storagesvc/app/services/storage"
-	svcG "github.com/mises-id/storagesvc/app/services/views/image"
-	"github.com/mises-id/storagesvc/config/env"
+	"github.com/mises-id/sns-storagesvc/app/services/storage"
+	svcG "github.com/mises-id/sns-storagesvc/app/services/views/image"
+	"github.com/mises-id/sns-storagesvc/config/env"
 
-	pb "github.com/mises-id/storagesvc/proto"
+	pb "github.com/mises-id/sns-storagesvc/proto"
 )
 
 // NewService returns a naïve, stateless implementation of Service.

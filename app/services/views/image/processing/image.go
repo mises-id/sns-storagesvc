@@ -4,9 +4,9 @@ import (
 	"fmt"
 
 	"github.com/h2non/bimg"
-	"github.com/mises-id/storagesvc/app/services/views/image/imagedata"
-	"github.com/mises-id/storagesvc/app/services/views/image/imagetype"
-	"github.com/mises-id/storagesvc/app/services/views/image/options"
+	"github.com/mises-id/sns-storagesvc/app/services/views/image/imagedata"
+	"github.com/mises-id/sns-storagesvc/app/services/views/image/imagetype"
+	"github.com/mises-id/sns-storagesvc/app/services/views/image/options"
 )
 
 func metadata(pctx *pipelineContext, imgdata *imagedata.ImageData, in *options.ImageOptions) error {

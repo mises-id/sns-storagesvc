@@ -2,8 +2,8 @@ package processing
 
 import (
 	"github.com/h2non/bimg"
-	"github.com/mises-id/storagesvc/app/services/views/image/imagedata"
-	"github.com/mises-id/storagesvc/app/services/views/image/options"
+	"github.com/mises-id/sns-storagesvc/app/services/views/image/imagedata"
+	"github.com/mises-id/sns-storagesvc/app/services/views/image/options"
 )
 
 func crop(pctx *pipelineContext, imgdata *imagedata.ImageData, in *options.ImageOptions) error {

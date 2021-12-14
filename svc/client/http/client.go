@@ -24,8 +24,8 @@ import (
 	"github.com/pkg/errors"
 
 	// This Service
-	pb "github.com/mises-id/storagesvc/proto"
-	"github.com/mises-id/storagesvc/svc"
+	pb "github.com/mises-id/sns-storagesvc/proto"
+	"github.com/mises-id/sns-storagesvc/svc"
 )
 
 var (

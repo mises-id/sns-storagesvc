@@ -13,7 +13,7 @@ import (
 var Envs *Env
 
 type Env struct {
-	Port           int    `env:"PORT" envDefault:"6060"`
+	Port           int    `env:"PORT" envDefault:"7070"`
 	AppEnv         string `env:"APP_ENV" envDefault:"development"`
 	AWSAccessKeyId string `env:"AWSAccessKeyId,required"`
 	AWSSecretKey   string `env:"AWSSecretKey,required"`

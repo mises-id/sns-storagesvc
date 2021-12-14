@@ -1,8 +1,8 @@
 package handlers
 
 import (
-	pb "github.com/mises-id/storagesvc/proto"
-	"github.com/mises-id/storagesvc/svc"
+	pb "github.com/mises-id/sns-storagesvc/proto"
+	"github.com/mises-id/sns-storagesvc/svc"
 )
 
 // WrapEndpoints accepts the service's entire collection of endpoints, so that a

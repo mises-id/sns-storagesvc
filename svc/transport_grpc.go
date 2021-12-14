@@ -17,7 +17,7 @@ import (
 	grpctransport "github.com/go-kit/kit/transport/grpc"
 
 	// This Service
-	pb "github.com/mises-id/storagesvc/proto"
+	pb "github.com/mises-id/sns-storagesvc/proto"
 )
 
 // MakeGRPCServer makes a set of endpoints available as a gRPC StoragesvcServer.

@@ -2,10 +2,11 @@ package handlers
 
 import (
 	"fmt"
-	"github.com/mises-id/storagesvc/svc"
 	"os"
 	"os/signal"
 	"syscall"
+
+	"github.com/mises-id/sns-storagesvc/svc"
 )
 
 func InterruptHandler(errc chan<- error) {

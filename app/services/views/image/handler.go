@@ -7,9 +7,9 @@ import (
 	"time"
 
 	"github.com/labstack/echo"
-	"github.com/mises-id/storagesvc/app/services/views/image/imagedata"
-	"github.com/mises-id/storagesvc/app/services/views/image/imageurl"
-	"github.com/mises-id/storagesvc/app/services/views/image/processing"
+	"github.com/mises-id/sns-storagesvc/app/services/views/image/imagedata"
+	"github.com/mises-id/sns-storagesvc/app/services/views/image/imageurl"
+	"github.com/mises-id/sns-storagesvc/app/services/views/image/processing"
 )
 
 type ()

@@ -5,7 +5,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/mises-id/storagesvc/cmd/web/rest"
+	"github.com/mises-id/sns-storagesvc/cmd/web/rest"
 	"github.com/sirupsen/logrus"
 	"github.com/urfave/cli"
 )
@@ -21,7 +21,7 @@ func main() {
 	app.Commands = cli.Commands{
 		{
 			Name:  "",
-			Usage: "./mises",
+			Usage: "./sns-storagesvc",
 			Flags: []cli.Flag{},
 			Action: func(c *cli.Context) error {
 				return rest.Start(ctx)
