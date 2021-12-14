@@ -5,7 +5,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/mises-id/storage-sdk/service/imgview"
+	"github.com/mises-id/sns-storagesvc/sdk/service/imgview"
+	"github.com/mises-id/sns-storagesvc/sdk/service/imgview/options"
 )
 
 func main() {
@@ -26,20 +27,26 @@ func main() {
 	paths := []string{
 		"s3://sc-cg-test/upload/test/cg/test.jpg",
 	}
-	resizeOptions := &imgview.ResizeOptions{
+
+	resizeOptions := &options.ResizeOptions{
 		Resize: true,
 		Width:  200,
 	}
-	cropOptions := &imgview.CropOptions{
+	cropOptions := &options.CropOptions{
 		Crop:  true,
 		Width: 300,
 	}
-	op := &imgview.ImageOptions{
-		ResizeOptions: resizeOptions,
-		CropOptions:   cropOptions,
-		Format:        "png",
+	watermarkOptions := &options.WatermarkTextOptions{
+		Watermark: true,
+		Text:      "mises",
 	}
-	out, err := imgClient.GetImgUrl(context.Background(), &imgview.ImageViewInput{
+	op := &options.ImageOptions{
+		ResizeOptions:        resizeOptions,
+		CropOptions:          cropOptions,
+		Format:               "png",
+		WatermarkTextOptions: watermarkOptions,
+	}
+	out, err := imgClient.GetImgUrl(context.Background(), &options.ImageViewInput{
 		Path:         path,
 		ImageOptions: op,
 	})
@@ -47,12 +54,12 @@ func main() {
 		fmt.Println("get img url err:", err.Error())
 	}
 	fmt.Println("get img url success:", out.Url)
-	out1, err1 := imgClient.GetImgUrlList(context.Background(), &imgview.ImageViewListInput{
+	outList, err1 := imgClient.GetImgUrlList(context.Background(), &options.ImageViewListInput{
 		Path:         paths,
 		ImageOptions: op,
 	})
 	if err1 != nil {
 		fmt.Println("get img url list err:", err1.Error())
 	}
-	fmt.Println("get img url list success:", strings.Join(out1.Url, ","))
+	fmt.Println("get img url list success:", strings.Join(outList.Url, ","))
 }

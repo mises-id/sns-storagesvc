@@ -6,7 +6,7 @@ import (
 	"path"
 	"strings"
 
-	"github.com/mises-id/storage-sdk/service/imgview/options"
+	"github.com/mises-id/sns-storagesvc/sdk/service/imgview/options"
 )
 
 func (c *Client) handler(ctx context.Context, in *options.ImageViewInput) (string, error) {

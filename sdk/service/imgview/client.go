@@ -4,7 +4,7 @@ import (
 	"context"
 	"errors"
 
-	"github.com/mises-id/storage-sdk/service/imgview/options"
+	"github.com/mises-id/sns-storagesvc/sdk/service/imgview/options"
 )
 
 var (

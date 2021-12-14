@@ -43,6 +43,7 @@ type (
 var pipeline = pipelineFuncs{
 	parseResizeOptionsPath,
 	parseCropOptionsPath,
+	parseWatermarkTextOptionsPath,
 	parseFormatOptionsPath,
 }
 
