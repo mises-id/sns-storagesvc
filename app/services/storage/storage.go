@@ -2,6 +2,7 @@ package storage
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"os"
 
@@ -9,8 +10,9 @@ import (
 )
 
 var (
-	storageService IStorageService
-	Prefix         = "upload/"
+	storageService  IStorageService
+	Prefix          = "upload/"
+	errFileNotExist = errors.New("file does not exist")
 )
 
 type (
@@ -40,12 +42,12 @@ type (
 )
 
 func init() {
-
 	bindSvc(env.Envs.StorageProvider)
 
 }
 
 func bindSvc(s string) {
+	fmt.Println(s)
 	switch s {
 	default:
 		storageService = &FileStore{}
@@ -78,7 +80,7 @@ func (s *StorageSvc) FUpload(ctx context.Context, in *StorageFUploadInput) (out 
 	file, err := os.Open(in.LocalFile)
 	fmt.Println(in.LocalFile)
 	if err != nil {
-		return out, err
+		return out, errFileNotExist
 	}
 	defer file.Close()
 	upin := &StorageUploadInput{

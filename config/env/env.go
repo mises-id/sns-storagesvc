@@ -25,7 +25,7 @@ type Env struct {
 	LocalFilePath   string `env:"LocalFilePath"`
 	StorageProvider string `env:"STORAGE_PROVIDER" envDefault:"local"`
 	S3Bucket        string `env:"S3Bucket,required"`
-	S3Prefix        string `env:"S3Prefix" envDefault:"aws-s3"`
+	S3Prefix        string `env:"S3Prefix" envDefault:"s3://"`
 	SignURL         bool   `env:"SignURL"`
 	SignKey         string `env:"SignKey"`
 	SignSalt        string `env:"SignSalt"`

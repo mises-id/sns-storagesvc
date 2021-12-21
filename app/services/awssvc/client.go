@@ -1,12 +1,11 @@
 package awssvc
 
-const (
-	AccessKey = "AKIA2QFHM73UNXPNUEOC"
-	SecretKey = "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"
-)
+import "github.com/mises-id/sns-storagesvc/config/env"
 
 var (
-	Region = "us-east-2"
+	AccessKey = env.Envs.AWSAccessKeyId
+	SecretKey = env.Envs.AWSSecretKey
+	Region    = env.Envs.AWSRegion
 )
 
 type (

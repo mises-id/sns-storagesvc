@@ -5,15 +5,15 @@ import (
 	"github.com/aws/aws-sdk-go-v2/credentials"
 	"github.com/aws/aws-sdk-go-v2/service/s3"
 	"github.com/mises-id/sns-storagesvc/app/services/awssvc"
+	"github.com/mises-id/sns-storagesvc/config/env"
 )
 
-const (
-	S3Prefix = "s3://"
-)
+const ()
 
 var (
-	S3Region = "us-east-2"
-	S3Bucket = "sc-cg-test"
+	S3Prefix = env.Envs.S3Prefix
+	S3Region = env.Envs.AWSRegion
+	S3Bucket = env.Envs.S3Bucket
 )
 
 type ()

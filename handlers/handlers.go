@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"context"
+	"time"
 
 	"github.com/mises-id/sns-storagesvc/app/logic"
 	svcG "github.com/mises-id/sns-storagesvc/app/services/image"
@@ -17,6 +18,8 @@ func NewService() pb.StoragesvcServer {
 type storagesvcService struct{}
 
 func (s storagesvcService) FUpload(ctx context.Context, in *pb.FUploadRequest) (*pb.FUploadResponse, error) {
+	ctx, cancel := context.WithTimeout(ctx, time.Second*10)
+	defer cancel()
 	var resp pb.FUploadResponse
 	svc := &logic.StorageLogic{}
 	res, err := svc.FUpload(ctx, in.File, in.Bucket, in.Key)
