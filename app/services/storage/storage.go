@@ -4,6 +4,8 @@ import (
 	"context"
 	"fmt"
 	"os"
+
+	"github.com/mises-id/sns-storagesvc/config/env"
 )
 
 var (
@@ -21,7 +23,6 @@ type (
 	}
 
 	StorageUploadOutput struct {
-		Url      string
 		FilePath string
 	}
 
@@ -39,16 +40,28 @@ type (
 )
 
 func init() {
-	storageService = &S3Storage{}
+
+	bindSvc(env.Envs.StorageProvider)
+
+}
+
+func bindSvc(s string) {
+	switch s {
+	default:
+		storageService = &FileStore{}
+	case "local":
+		storageService = &FileStore{}
+	case "s3":
+		storageService = &S3Storage{}
+	}
+}
+
+func New() *StorageSvc {
+	return &StorageSvc{}
 }
 
 func (svc *StorageSvc) Bind(s string) *StorageSvc {
-	switch s {
-	default:
-		storageService = &S3Storage{}
-	case "local":
-		storageService = &S3Storage{}
-	}
+	bindSvc(s)
 	return svc
 }
 

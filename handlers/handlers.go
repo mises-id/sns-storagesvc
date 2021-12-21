@@ -2,11 +2,9 @@ package handlers
 
 import (
 	"context"
-	"fmt"
 
-	"github.com/mises-id/sns-storagesvc/app/services/storage"
-	svcG "github.com/mises-id/sns-storagesvc/app/services/views/image"
-	"github.com/mises-id/sns-storagesvc/config/env"
+	"github.com/mises-id/sns-storagesvc/app/logic"
+	svcG "github.com/mises-id/sns-storagesvc/app/services/image"
 
 	pb "github.com/mises-id/sns-storagesvc/proto"
 )
@@ -20,23 +18,13 @@ type storagesvcService struct{}
 
 func (s storagesvcService) FUpload(ctx context.Context, in *pb.FUploadRequest) (*pb.FUploadResponse, error) {
 	var resp pb.FUploadResponse
-	fmt.Println(in)
-	id := env.Envs
-	fmt.Println(id)
-	svc := &storage.StorageSvc{}
-	sin := &storage.StorageFUploadInput{
-		Bucket:    in.Bucket,
-		FilePath:  in.Key,
-		LocalFile: in.File,
-	}
-	res, err := svc.FUpload(ctx, sin)
+	svc := &logic.StorageLogic{}
+	res, err := svc.FUpload(ctx, in.File, in.Bucket, in.Key)
 	if err != nil {
 		return nil, err
 	}
-	if res.FilePath != "" {
-
-	}
-	resp.Path = res.FilePath
+	resp.Path = res.Path
+	resp.AttachId = res.AttachId
 
 	return &resp, nil
 }

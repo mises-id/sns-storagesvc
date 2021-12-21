@@ -9,7 +9,7 @@ import (
 )
 
 var (
-	localFilePath   = env.Envs.LocalFilePath
+	//localFilePath   = env.Envs.LocalFilePath
 	downloadService IDownloadService
 )
 
@@ -32,7 +32,7 @@ func download(ctx context.Context, in *DownloadInput) (out *downloadOutput, err 
 	if strings.HasPrefix(imgaeUrl, "s3://") {
 		downloadService = &s3DownloadSvc{}
 	} else {
-		in.Url = localFilePath + in.Url
+		in.Url = env.Envs.LocalFilePath + in.Url
 		downloadService = &localDownloadSvc{}
 	}
 	return downloadService.Download(ctx, in)

@@ -6,10 +6,14 @@
 package main
 
 import (
+	"context"
 	"flag"
+	"fmt"
+	"time"
 
 	// This Service
 	"github.com/mises-id/sns-storagesvc/handlers"
+	"github.com/mises-id/sns-storagesvc/lib/db"
 	"github.com/mises-id/sns-storagesvc/svc/server"
 )
 
@@ -17,6 +21,10 @@ func main() {
 	// Update addresses if they have been overwritten by flags
 	flag.Parse()
 
+	ctx, cancel := context.WithTimeout(context.Background(), 60*time.Second)
+	defer cancel()
+	fmt.Println("mongo init")
+	db.SetupMongo(ctx)
 	cfg := server.DefaultConfig
 	cfg = handlers.SetConfig(cfg)
 

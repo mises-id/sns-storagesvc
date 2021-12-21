@@ -13,18 +13,23 @@ import (
 var Envs *Env
 
 type Env struct {
-	Port           int    `env:"PORT" envDefault:"7070"`
-	AppEnv         string `env:"APP_ENV" envDefault:"development"`
-	AWSAccessKeyId string `env:"AWSAccessKeyId,required"`
-	AWSSecretKey   string `env:"AWSSecretKey,required"`
-	AWSRegion      string `env:"AWSRegion,required"`
-	LocalFilePath  string `env:"LocalFilePath"`
-	S3Bucket       string `env:"S3Bucket,required"`
-	S3Prefix       string `env:"S3Prefix" envDefault:"aws-s3"`
-	SignURL        bool   `env:"SignURL"`
-	SignKey        string `env:"SignKey"`
-	SignSalt       string `env:"SignSalt"`
-	RootPath       string
+	Port            int    `env:"PORT" envDefault:"7070"`
+	AppEnv          string `env:"APP_ENV" envDefault:"development"`
+	MongoURI        string `env:"MONGO_URI,required"`
+	DBUser          string `env:"DB_USER"`
+	DBPass          string `env:"DB_PASS"`
+	DBName          string `env:"DB_NAME" envDefault:"mises"`
+	AWSAccessKeyId  string `env:"AWSAccessKeyId,required"`
+	AWSSecretKey    string `env:"AWSSecretKey,required"`
+	AWSRegion       string `env:"AWSRegion,required"`
+	LocalFilePath   string `env:"LocalFilePath"`
+	StorageProvider string `env:"STORAGE_PROVIDER" envDefault:"local"`
+	S3Bucket        string `env:"S3Bucket,required"`
+	S3Prefix        string `env:"S3Prefix" envDefault:"aws-s3"`
+	SignURL         bool   `env:"SignURL"`
+	SignKey         string `env:"SignKey"`
+	SignSalt        string `env:"SignSalt"`
+	RootPath        string
 }
 
 func init() {

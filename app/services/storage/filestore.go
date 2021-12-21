@@ -11,7 +11,7 @@ import (
 )
 
 var (
-	localFilePath = env.Envs.LocalFilePath
+//localFilePath   = env.Envs.LocalFilePath
 )
 
 type FileStore struct{}
@@ -25,7 +25,7 @@ func (s *FileStore) Upload(ctx context.Context, in *StorageUploadInput) (*Storag
 	}
 	out := &StorageUploadOutput{}
 	filePath := path.Join(s3in.Bucket, s3in.Key)
-	localfile := path.Join(localFilePath, filePath)
+	localfile := path.Join(env.Envs.LocalFilePath, filePath)
 	err := localSave(ctx, localfile, s3in.File)
 	if err != nil {
 		return out, err
