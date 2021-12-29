@@ -3,16 +3,17 @@ package storage
 import (
 	"context"
 	"errors"
-	"fmt"
 	"os"
+	"path"
 
 	"github.com/mises-id/sns-storagesvc/config/env"
 )
 
 var (
-	storageService  IStorageService
-	Prefix          = "upload/"
-	errFileNotExist = errors.New("file does not exist")
+	storageService   IStorageService
+	Prefix           = "upload/"
+	errFileNotExist  = errors.New("file does not exist")
+	errFilePathEmpty = errors.New("file path not empty")
 )
 
 type (
@@ -47,7 +48,6 @@ func init() {
 }
 
 func bindSvc(s string) {
-	fmt.Println(s)
 	switch s {
 	default:
 		storageService = &FileStore{}
@@ -68,8 +68,10 @@ func (svc *StorageSvc) Bind(s string) *StorageSvc {
 }
 
 func (s *StorageSvc) Upload(ctx context.Context, in *StorageUploadInput) (*StorageUploadOutput, error) {
-
-	in.FilePath = Prefix + in.FilePath
+	if in.FilePath == "" {
+		return nil, errFilePathEmpty
+	}
+	in.FilePath = path.Join(Prefix, in.FilePath)
 	return storageService.Upload(ctx, in)
 
 }
@@ -78,7 +80,6 @@ func (s *StorageSvc) FUpload(ctx context.Context, in *StorageFUploadInput) (out 
 	//valid localfile
 
 	file, err := os.Open(in.LocalFile)
-	fmt.Println(in.LocalFile)
 	if err != nil {
 		return out, errFileNotExist
 	}

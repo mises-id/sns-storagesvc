@@ -21,7 +21,7 @@ func Start(ctx context.Context) error {
 	// Router
 	router.SetRouter(e)
 	go func() {
-		if err := e.Start(fmt.Sprintf(":%d", env.Envs.Port)); err != nil {
+		if err := e.Start(fmt.Sprintf(":%d", env.Envs.WebPort)); err != nil {
 			log.Fatal(err)
 		}
 	}()

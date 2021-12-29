@@ -2,6 +2,8 @@ package logic
 
 import (
 	"context"
+	"errors"
+	"fmt"
 
 	"github.com/mises-id/sns-storagesvc/app/models"
 	"github.com/mises-id/sns-storagesvc/app/services/storage"
@@ -19,6 +21,11 @@ type (
 
 func (logic *StorageLogic) FUpload(ctx context.Context, localfile, bucket, key string) (*StorageUploadOutput, error) {
 
+	//validate
+	if localfile == "" || key == "" {
+		return nil, errors.New("invalid params")
+	}
+
 	out := &StorageUploadOutput{}
 	//to save file
 	svc := storage.New()
@@ -29,6 +36,7 @@ func (logic *StorageLogic) FUpload(ctx context.Context, localfile, bucket, key s
 	}
 	upload, err := svc.FUpload(ctx, sin)
 	if err != nil {
+		fmt.Println("upload file error: ", err.Error())
 		return out, err
 	}
 	data := &models.Attachment{
@@ -40,6 +48,7 @@ func (logic *StorageLogic) FUpload(ctx context.Context, localfile, bucket, key s
 
 	res, err := logic.model.Create(ctx, data)
 	if err != nil {
+		fmt.Println("create attachment error: ", err.Error())
 		return out, nil
 	}
 

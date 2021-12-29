@@ -13,7 +13,7 @@ import (
 var Envs *Env
 
 type Env struct {
-	Port            int    `env:"PORT" envDefault:"7070"`
+	WebPort         int    `env:"WEB_PORT" envDefault:"7070"`
 	AppEnv          string `env:"APP_ENV" envDefault:"development"`
 	MongoURI        string `env:"MONGO_URI,required"`
 	DBUser          string `env:"DB_USER"`

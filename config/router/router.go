@@ -7,6 +7,6 @@ import (
 
 func SetRouter(e *echo.Echo) {
 	//image
-	ImageCtrl := &ctrl.ImageCtrl{}
-	e.GET("*", ImageCtrl.Handler)
+	api := &ctrl.ImageCtrl{}
+	e.GET("*", api.Handler)
 }
