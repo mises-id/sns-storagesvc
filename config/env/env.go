@@ -29,6 +29,7 @@ type Env struct {
 	SignURL         bool   `env:"SignURL"`
 	SignKey         string `env:"SignKey"`
 	SignSalt        string `env:"SignSalt"`
+	Host            string `env:"HOST"`
 	RootPath        string
 }
 

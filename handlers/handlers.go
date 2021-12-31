@@ -28,6 +28,7 @@ func (s storagesvcService) FUpload(ctx context.Context, in *pb.FUploadRequest) (
 	}
 	resp.Path = res.Path
 	resp.AttachId = res.AttachId
+	resp.Url = res.Url
 
 	return &resp, nil
 }

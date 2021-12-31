@@ -26,6 +26,7 @@ require (
 	github.com/labstack/gommon v0.3.1 // indirect
 	github.com/mattn/go-colorable v0.1.12 // indirect
 	github.com/metaverse/truss v0.3.1
+	github.com/mises-id/sns-storagesvc/sdk v0.0.0-20211229064402-41052e86ccfb
 	github.com/onsi/gomega v1.14.0 // indirect
 	github.com/pkg/errors v0.9.1
 	github.com/rogpeppe/go-internal v1.8.0 // indirect

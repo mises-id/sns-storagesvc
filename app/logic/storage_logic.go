@@ -7,6 +7,9 @@ import (
 
 	"github.com/mises-id/sns-storagesvc/app/models"
 	"github.com/mises-id/sns-storagesvc/app/services/storage"
+	"github.com/mises-id/sns-storagesvc/config/env"
+	"github.com/mises-id/sns-storagesvc/sdk/service/imgview"
+	"github.com/mises-id/sns-storagesvc/sdk/service/imgview/options"
 )
 
 type (
@@ -54,5 +57,28 @@ func (logic *StorageLogic) FUpload(ctx context.Context, localfile, bucket, key s
 
 	out.AttachId = res.ID
 	//get url by path
+	out.Url = viewUrl(out.Path)
 	return out, nil
+}
+
+func viewUrl(path string) string {
+	var url string
+	host := env.Envs.Host
+	if host == "" {
+		return url
+	}
+	imgClient := imgview.New(
+		imgview.Options{
+			Key:  env.Envs.SignKey,
+			Salt: env.Envs.SignSalt,
+			Host: env.Envs.Host,
+		},
+	)
+	out, err := imgClient.GetImgUrl(context.Background(), &options.ImageViewInput{
+		Path: path,
+	})
+	if err == nil {
+		url = out.Url
+	}
+	return url
 }
