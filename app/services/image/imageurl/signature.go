@@ -40,7 +40,6 @@ func verifySignature(signature, path, opPath string) (err error) {
 	encodedURL := base64.RawURLEncoding.EncodeToString([]byte(path))
 	str := fmt.Sprintf("%s%s", encodedURL, opPath)
 	str = strings.TrimSuffix(str, "/")
-	fmt.Println("verify signature str ", str)
 	if hmac.Equal(messageMAC, signatureFor(str, key, salt)) {
 		return nil
 	}

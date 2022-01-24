@@ -16,7 +16,15 @@ func resize(pctx *pipelineContext, imgdata *imagedata.ImageData, in *options.Ima
 	bop := bimg.Options{
 		Width:  in.ResizeOptions.Width,
 		Height: in.ResizeOptions.Height,
-		Embed:  true,
+	}
+	switch in.ResizeOptions.ResizeType {
+	case "fit":
+		bop.Embed = true
+		bop.Crop = true
+	case "fill":
+		bop.Embed = true
+	case "force":
+		bop.Force = true
 	}
 	buf := imgdata.Data
 	imgdata.Data, err = bimg.NewImage(buf).Process(bop)

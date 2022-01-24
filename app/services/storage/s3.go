@@ -71,7 +71,7 @@ func (s *S3Storage) S3PutObject(ctx context.Context, in *S3PutObjectInPut) error
 	}
 	_, err := putFile(ctx, s3svc.GetS3Client(), input)
 	if err != nil {
-		fmt.Println(err)
+		fmt.Println("s3 put object error: ", err)
 		return err
 	}
 	return nil

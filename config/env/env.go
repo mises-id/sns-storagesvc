@@ -19,12 +19,12 @@ type Env struct {
 	DBUser          string `env:"DB_USER"`
 	DBPass          string `env:"DB_PASS"`
 	DBName          string `env:"DB_NAME" envDefault:"mises"`
-	AWSAccessKeyId  string `env:"AWSAccessKeyId,required"`
-	AWSSecretKey    string `env:"AWSSecretKey,required"`
-	AWSRegion       string `env:"AWSRegion,required"`
+	AWSAccessKeyId  string `env:"AWSAccessKeyId"`
+	AWSSecretKey    string `env:"AWSSecretKey"`
+	AWSRegion       string `env:"AWSRegion"`
 	LocalFilePath   string `env:"LocalFilePath"`
 	StorageProvider string `env:"STORAGE_PROVIDER" envDefault:"local"`
-	S3Bucket        string `env:"S3Bucket,required"`
+	S3Bucket        string `env:"S3Bucket"`
 	S3Prefix        string `env:"S3Prefix" envDefault:"s3://"`
 	SignURL         bool   `env:"SignURL"`
 	SignKey         string `env:"SignKey"`

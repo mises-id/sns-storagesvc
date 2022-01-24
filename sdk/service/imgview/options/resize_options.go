@@ -4,7 +4,11 @@ import "fmt"
 
 type (
 	ResizeOptions struct {
-		Resize     bool
+		Resize bool
+		//ResizeType
+		//fit  resizes the image while keeping aspect ratio to fit given size;
+		//fill resizes the image while keeping aspect ratio to fill given size and cropping projecting parts;
+		//force resizes the image without keeping aspect ratio;
 		ResizeType string
 		Height     int
 		Width      int

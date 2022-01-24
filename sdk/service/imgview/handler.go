@@ -15,7 +15,10 @@ func (c *Client) handler(ctx context.Context, in *options.ImageViewInput) (strin
 	if err != nil {
 		return "", err
 	}
-
+	//http https path
+	if strings.HasPrefix(in.Path, "http") {
+		return in.Path, nil
+	}
 	opPath := options.ParseOptionsPath(in.ImageOptions)
 	if c.options.Key != "" && c.options.Salt != "" {
 		signature, err := signature(c.options.Key, c.options.Salt, in.Path, opPath)

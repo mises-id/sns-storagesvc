@@ -11,9 +11,9 @@ import (
 
 func main() {
 
-	key := "736563726574"
-	salt := "68656C6C6F"
-	host := "http://localhost:6060/"
+	key := "1d3dc5aa0144b6995ea52a8e6f6dd430b193ca4f2242d7f08bd5f735945949c26aa556c444d4b6a076faf50239f98e2797b51452361741f5467097605c64f406"
+	salt := "0072cd5aaf3d88e990c70de6f789fd4782ec51060cc9840bef7bff8aaa524b467aca6a58ba20f9dfd8a5c1d78a57751c241cdff71cae8722561623221c1841b0"
+	host := "http://localhost:7070/"
 
 	imgClient := imgview.New(
 		imgview.Options{
@@ -22,10 +22,11 @@ func main() {
 			Host: host,
 		},
 	)
-	path := "test.jpg"
+	path := "test.png"
 
 	paths := []string{
-		"s3://sc-cg-test/upload/test/cg/test.jpg",
+		"https://s3://mises-storage/upload/test/cg/test.jpg",
+		"test.jpeg",
 	}
 
 	resizeOptions := &options.ResizeOptions{
@@ -55,8 +56,8 @@ func main() {
 	}
 	fmt.Println("get img url success:", out.Url)
 	outList, err1 := imgClient.GetImgUrlList(context.Background(), &options.ImageViewListInput{
-		Path:         paths,
-		ImageOptions: op,
+		Path: paths,
+		//ImageOptions: op,
 	})
 	if err1 != nil {
 		fmt.Println("get img url list err:", err1.Error())

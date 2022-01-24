@@ -16,23 +16,19 @@ var (
 )
 
 func signature(key, salt, path, opPath string) (string, error) {
+
 	var keyBin, saltBin []byte
 	var err error
-
 	if keyBin, err = hex.DecodeString(key); err != nil {
 		log.Fatal(keyInvalid)
 		return "", errors.New(keyInvalid)
 	}
-
 	if saltBin, err = hex.DecodeString(salt); err != nil {
 		log.Fatal(saltInvalid)
 		return "", errors.New(saltInvalid)
 	}
-
 	encodedURL := base64.RawURLEncoding.EncodeToString([]byte(path))
-
 	str := fmt.Sprintf("%s%s", encodedURL, opPath)
-	fmt.Println("sign str:", str)
 	mac := hmac.New(sha256.New, keyBin)
 	mac.Write(saltBin)
 	mac.Write([]byte(str))

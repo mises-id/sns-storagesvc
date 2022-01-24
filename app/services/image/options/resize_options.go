@@ -13,7 +13,7 @@ func parseResizeStrToResizeOptions(op *ImageOptions, arr []string) {
 	len := len(arr)
 	if len == 4 {
 		resize_type := "fit"
-		if arr[1] == "fit" || arr[1] == "fill" {
+		if arr[1] == "fit" || arr[1] == "fill" || arr[1] == "force" {
 			resize_type = arr[1]
 		}
 		rs := &ResizeOptions{

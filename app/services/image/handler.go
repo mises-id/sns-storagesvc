@@ -24,12 +24,10 @@ func Handler(c echo.Context) error {
 	if err == nil {
 		uri = str
 	}
-	fmt.Println("uri: ", uri)
 	// time out
 	ctx, cancel := context.WithTimeout(c.Request().Context(), 20*time.Second)
 	defer cancel()
 	//parse uri
-
 	imgUrl, op, err := imageurl.ParseUri(uri)
 	if err != nil {
 		fmt.Println("parse uri error ", err.Error())

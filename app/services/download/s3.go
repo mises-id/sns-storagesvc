@@ -3,7 +3,6 @@ package download
 import (
 	"context"
 	"errors"
-	"fmt"
 	"io/ioutil"
 	"strings"
 
@@ -35,7 +34,6 @@ func (svc *s3DownloadSvc) Download(ctx context.Context, in *DownloadInput) (out 
 	}
 	bucket := strArr[0]
 	key := strings.Join(strArr[1:], "/")
-	fmt.Printf("image url %v,bucket %v,key %v", in.Url, bucket, key)
 	s3in := &s3DownloadInput{
 		Bucket: bucket,
 		Key:    key,
