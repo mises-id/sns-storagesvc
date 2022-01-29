@@ -11,7 +11,8 @@ type (
 		*ResizeOptions
 		*CropOptions
 		*WatermarkTextOptions
-		Format imagetype.Type
+		Format  imagetype.Type
+		Quality int
 	}
 )
 

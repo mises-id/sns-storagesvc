@@ -18,6 +18,9 @@ func crop(pctx *pipelineContext, imgdata *imagedata.ImageData, in *options.Image
 		Height: in.CropOptions.Height,
 		Crop:   true,
 	}
+	if in.Quality > 0 {
+		bop.Quality = in.Quality
+	}
 	buf := imgdata.Data
 	imgdata.Data, err = bimg.NewImage(buf).Process(bop)
 	if err != nil {

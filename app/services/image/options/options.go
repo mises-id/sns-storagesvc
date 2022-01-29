@@ -35,6 +35,8 @@ func parseOpStr(op *ImageOptions, opstr string) {
 		paserWatermarkTextStrToOptions(op, arr)
 	case "format":
 		parseFormatStrToOptions(op, arr)
+	case "quality":
+		parseQualityStrToOptions(op, arr)
 	}
 }
 func parseFormatStrToOptions(op *ImageOptions, arr []string) {
@@ -42,6 +44,19 @@ func parseFormatStrToOptions(op *ImageOptions, arr []string) {
 		Type, ok := imagetype.FormatTypes[arr[1]]
 		if ok {
 			op.Format = Type
+		}
+	}
+}
+func parseQualityStrToOptions(op *ImageOptions, arr []string) {
+	if len(arr) == 2 {
+		if err := parseDimension(&op.Quality, "quality", arr[1]); err != nil {
+			return
+		}
+		if op.Quality < 0 {
+			op.Quality = 0
+		}
+		if op.Quality > 100 {
+			op.Quality = 100
 		}
 	}
 }

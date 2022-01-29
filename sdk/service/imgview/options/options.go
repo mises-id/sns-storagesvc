@@ -36,7 +36,8 @@ type (
 		*ResizeOptions
 		*CropOptions
 		*WatermarkTextOptions
-		Format string //jpeg,png,jpg,webp
+		Format  string //jpeg,png,jpg,webp
+		Quality int
 	}
 )
 
@@ -45,6 +46,7 @@ var pipeline = pipelineFuncs{
 	parseCropOptionsPath,
 	parseWatermarkTextOptionsPath,
 	parseFormatOptionsPath,
+	parseQualityOptionsPath,
 }
 
 func ParseOptionsPath(op *ImageOptions) (opPath string) {
@@ -65,6 +67,15 @@ func parseFormatOptionsPath(op *ImageOptions) (path string) {
 		}
 	}
 	path = fmt.Sprintf("format%s%s", optionsPathPrefix, op.Format)
+
+	return path
+}
+func parseQualityOptionsPath(op *ImageOptions) (path string) {
+
+	if op == nil || op.Quality <= 0 {
+		return path
+	}
+	path = fmt.Sprintf("quality%s%d", optionsPathPrefix, op.Quality)
 
 	return path
 }

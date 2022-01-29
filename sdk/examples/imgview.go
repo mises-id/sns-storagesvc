@@ -27,25 +27,17 @@ func main() {
 	paths := []string{
 		"https://s3://mises-storage/upload/test/cg/test.jpg",
 		"test.jpeg",
+		"test2.jpeg",
 	}
 
 	resizeOptions := &options.ResizeOptions{
 		Resize: true,
 		Width:  200,
 	}
-	cropOptions := &options.CropOptions{
-		Crop:  true,
-		Width: 300,
-	}
-	watermarkOptions := &options.WatermarkTextOptions{
-		Watermark: true,
-		Text:      "mises",
-	}
+
 	op := &options.ImageOptions{
-		ResizeOptions:        resizeOptions,
-		CropOptions:          cropOptions,
-		Format:               "png",
-		WatermarkTextOptions: watermarkOptions,
+		ResizeOptions: resizeOptions,
+		Quality:       50,
 	}
 	out, err := imgClient.GetImgUrl(context.Background(), &options.ImageViewInput{
 		Path:         path,
@@ -56,8 +48,8 @@ func main() {
 	}
 	fmt.Println("get img url success:", out.Url)
 	outList, err1 := imgClient.GetImgUrlList(context.Background(), &options.ImageViewListInput{
-		Path: paths,
-		//ImageOptions: op,
+		Path:         paths,
+		ImageOptions: op,
 	})
 	if err1 != nil {
 		fmt.Println("get img url list err:", err1.Error())

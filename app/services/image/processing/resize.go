@@ -17,6 +17,9 @@ func resize(pctx *pipelineContext, imgdata *imagedata.ImageData, in *options.Ima
 		Width:  in.ResizeOptions.Width,
 		Height: in.ResizeOptions.Height,
 	}
+	if in.Quality > 0 {
+		bop.Quality = in.Quality
+	}
 	switch in.ResizeOptions.ResizeType {
 	case "fit":
 		bop.Embed = true
