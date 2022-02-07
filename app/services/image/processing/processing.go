@@ -18,6 +18,7 @@ var processeScopesFuncs = pipeline{
 	crop,
 	format,
 	watermark_text,
+	quality,
 	metadata,
 }
 

@@ -40,3 +40,22 @@ func format(pctx *pipelineContext, imgdata *imagedata.ImageData, in *options.Ima
 	fmt.Println("format type:", in.Format)
 	return nil
 }
+
+func quality(pctx *pipelineContext, imgdata *imagedata.ImageData, in *options.ImageOptions) error {
+	var (
+		err error
+	)
+	if in == nil || in.Quality <= 0 {
+		return nil
+	}
+	bop := bimg.Options{
+
+		Quality: in.Quality,
+	}
+	buf := imgdata.Data
+	imgdata.Data, err = bimg.NewImage(buf).Process(bop)
+	if err != nil {
+		return err
+	}
+	return nil
+}

@@ -46,18 +46,6 @@ func (s *S3Storage) Upload(ctx context.Context, in *StorageUploadInput) (*Storag
 	return out, nil
 }
 
-/* func (s *S3Storage) FUpload(ctx context.Context, in *StoragFUploadInput) (error){
-	file,err := os.Open(in.LocalFile)
-	if err != nil {
-		return err
-	}
-	err = s.S3PutObject(ctx, bucket, filePath, file)
-	if err != nil {
-		return err
-	}
-	return nil
-} */
-
 func (s *S3Storage) S3PutObject(ctx context.Context, in *S3PutObjectInPut) error {
 
 	if in.Bucket == "" {
@@ -84,11 +72,9 @@ func (s *S3Storage) S3GetObject(ctx context.Context, in *S3GetObjectInPut) error
 		Key:    aws.String(in.Key),
 	}
 	res, err := client.GetObject(ctx, input)
-	//client.HeadObject()
 	if err != nil {
 		return err
 	}
-	//p,err := ioutil.ReadAll(res.Body)
 	defer res.Body.Close()
 	return nil
 }
