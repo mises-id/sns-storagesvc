@@ -11,8 +11,8 @@ import (
 
 func main() {
 
-	key := "1d3dc5aa0144b6995ea52a8e6f6dd430b193ca4f2242d7f08bd5f735945949c26aa556c444d4b6a076faf50239f98e2797b51452361741f5467097605c64f406"
-	salt := "0072cd5aaf3d88e990c70de6f789fd4782ec51060cc9840bef7bff8aaa524b467aca6a58ba20f9dfd8a5c1d78a57751c241cdff71cae8722561623221c1841b0"
+	key := "736563726574"
+	salt := "68656C6C6F"
 	host := "http://localhost:7070/"
 
 	imgClient := imgview.New(
