@@ -22,6 +22,6 @@ func parseResizeOptionsPath(op *ImageOptions) (resizePath string) {
 	if op.ResizeType == "" {
 		op.ResizeType = "fit"
 	}
-	resizePath = fmt.Sprintf("resize%s%s%s%d%s%d", optionsPathPrefix, op.ResizeType, optionsPathPrefix, op.ResizeOptions.Width, optionsPathPrefix, op.ResizeOptions.Height)
+	resizePath = fmt.Sprintf("resize=%s%s%d%s%d", op.ResizeType, optionsPathPrefix, op.ResizeOptions.Width, optionsPathPrefix, op.ResizeOptions.Height)
 	return resizePath
 }

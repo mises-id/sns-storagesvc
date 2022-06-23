@@ -2,6 +2,7 @@ package options
 
 import (
 	"fmt"
+	"net/url"
 	"strconv"
 	"strings"
 
@@ -16,6 +17,34 @@ func parseOpPartsToOp(parts []string) *ImageOptions {
 	op := &ImageOptions{}
 	for _, v := range parts {
 		parseOpStr(op, v)
+	}
+	return op
+
+}
+
+func parseOpPartsToOpV2(opstr string) *ImageOptions {
+	op := &ImageOptions{}
+	params, _ := url.ParseQuery(opstr)
+	resizes, ok := params["resize"]
+	if ok && len(resizes) > 0 {
+		parseOpStr(op, "resize:"+resizes[0])
+	}
+	crops, ok := params["crop"]
+	if ok && len(crops) > 0 {
+		parseOpStr(op, "crop:"+crops[0])
+	}
+	watermarks, ok := params["watermark"]
+	if ok && len(watermarks) > 0 {
+		parseOpStr(op, "watermark:"+watermarks[0])
+	}
+	formats, ok := params["format"]
+
+	if ok && len(formats) > 0 {
+		parseOpStr(op, "format:"+formats[0])
+	}
+	qualitys, ok := params["quality"]
+	if ok && len(qualitys) > 0 {
+		parseOpStr(op, "quality:"+qualitys[0])
 	}
 	return op
 }

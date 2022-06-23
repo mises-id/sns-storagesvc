@@ -66,7 +66,7 @@ func parseFormatOptionsPath(op *ImageOptions) (path string) {
 			return path
 		}
 	}
-	path = fmt.Sprintf("format%s%s", optionsPathPrefix, op.Format)
+	path = fmt.Sprintf("format=%s", op.Format)
 
 	return path
 }
@@ -75,7 +75,7 @@ func parseQualityOptionsPath(op *ImageOptions) (path string) {
 	if op == nil || op.Quality <= 0 {
 		return path
 	}
-	path = fmt.Sprintf("quality%s%d", optionsPathPrefix, op.Quality)
+	path = fmt.Sprintf("quality=%d", op.Quality)
 
 	return path
 }

@@ -16,9 +16,11 @@ type (
 	}
 )
 
-func ParseOpPathToOp(opstr string) *ImageOptions {
-
-	opParts := strings.Split(opstr, "/")
-	op := parseOpPartsToOp(opParts)
-	return op
+func ParseOpPathToOp(opstr, version string) *ImageOptions {
+	if version == "1.0" {
+		opParts := strings.Split(opstr, "/")
+		op := parseOpPartsToOp(opParts)
+		return op
+	}
+	return parseOpPartsToOpV2(opstr)
 }

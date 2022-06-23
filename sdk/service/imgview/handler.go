@@ -3,7 +3,6 @@ package imgview
 import (
 	"context"
 	"fmt"
-	"path"
 	"strings"
 
 	"github.com/mises-id/sns-storagesvc/sdk/service/imgview/options"
@@ -25,7 +24,10 @@ func (c *Client) handler(ctx context.Context, in *options.ImageViewInput) (strin
 		if err != nil {
 			return "", err
 		}
-		opPath = path.Join(signature, opPath)
+		if opPath != "" {
+			opPath = "&" + opPath
+		}
+		opPath = "sign=" + signature + opPath
 	}
 	url := createViewUrl(c.options.Host, in.Path, opPath)
 

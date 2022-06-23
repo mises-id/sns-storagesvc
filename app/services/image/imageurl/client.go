@@ -2,6 +2,7 @@ package imageurl
 
 import (
 	"errors"
+	"net/url"
 	"strings"
 
 	"github.com/mises-id/sns-storagesvc/app/services/image/options"
@@ -30,19 +31,39 @@ func ParseUri(uri string) (img string, op *options.ImageOptions, err error) {
 }
 
 func parseOpPath(img, opPath string) (op *options.ImageOptions, err error) {
+	version := "1.0"
+	params, _ := url.ParseQuery(opPath)
+	_, ok := params["version"]
+	if ok {
+		version = "2.0"
+	}
 	if env.Envs.SignURL {
-		signature := opPath
-		if queryStart := strings.IndexByte(opPath, '/'); queryStart >= 0 {
-			signature = opPath[:queryStart]
-			opPath = opPath[queryStart:]
+		var signature string
+		if version == "1.0" {
+			signature = opPath
+			if queryStart := strings.IndexByte(opPath, '/'); queryStart >= 0 {
+				signature = opPath[:queryStart]
+				opPath = opPath[queryStart:]
+			} else {
+				opPath = ""
+			}
 		} else {
-			opPath = ""
+			signs, ok := params["sign"]
+			if !ok || len(signs) <= 0 {
+				return nil, errSignature
+			}
+			signature = signs[0]
+			if queryStart := strings.IndexByte(opPath, '&'); queryStart >= 0 {
+				opPath = strings.TrimPrefix(opPath[queryStart:], "&")
+			} else {
+				opPath = ""
+			}
 		}
 		if err = verifySignature(signature, img, opPath); err != nil {
 			return nil, errSignature
 		}
 	}
-	op = options.ParseOpPathToOp(opPath)
+	op = options.ParseOpPathToOp(opPath, version)
 	return op, nil
 
 }

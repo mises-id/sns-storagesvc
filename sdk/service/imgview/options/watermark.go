@@ -20,9 +20,8 @@ func parseWatermarkTextOptionsPath(op *ImageOptions) (path string) {
 		return path
 	}
 	var path_arr = []string{
-		"watermark",
 		base64.RawURLEncoding.EncodeToString([]byte(op.WatermarkTextOptions.Text)),
 	}
-	path = strings.Join(path_arr, optionsPathPrefix)
+	path = "watermark=" + strings.Join(path_arr, optionsPathPrefix)
 	return path
 }
