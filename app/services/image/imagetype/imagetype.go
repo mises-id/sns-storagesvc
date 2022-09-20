@@ -31,6 +31,7 @@ var (
 		"jpg":  JPEG,
 		"png":  PNG,
 		"webp": WEBP,
+		"svg":  SVG,
 	}
 	Types = map[string]Type{
 		"jpeg": JPEG,
@@ -40,6 +41,7 @@ var (
 		"gif":  GIF,
 		"avif": AVIF,
 		"tiff": TIFF,
+		"svg":  SVG,
 	}
 
 	mimes = map[Type]string{

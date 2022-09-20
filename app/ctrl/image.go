@@ -35,6 +35,5 @@ func (ctrl *ImageCtrl) Handler(c echo.Context) error {
 	if err != nil {
 		return err
 	}
-
 	return c.Stream(200, imgdata.Type.Mime(), bytes.NewReader(imgdata.Data))
 }

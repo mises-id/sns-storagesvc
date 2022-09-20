@@ -15,7 +15,6 @@ func metadata(pctx *pipelineContext, imgdata *imagedata.ImageData, in *options.I
 		return nil
 	}
 	img_type := bimg.NewImage(imgdata.Data).Type()
-
 	Type, ok := imagetype.Types[img_type]
 	if !ok {
 		Type = 0
