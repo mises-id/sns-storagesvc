@@ -1,0 +1,9 @@
+version: "3"
+services:
+  storage:
+    build: .
+    ports:
+      - "8081:8081"
+    volumes:
+      - ./storagesvc:/go/work/storagesvc
+    tty: true
